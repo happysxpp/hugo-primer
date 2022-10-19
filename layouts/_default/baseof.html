@@ -80,4 +80,63 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
     {{ end }}
   </body>
+    <meta name="viewport" content="width=device-width">
+    <style>
+      html{
+        background: #CCC;
+      }
+      html .sakana-box{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        
+        transform-origin: 50% 100%; /* 从右下开始变换 */
+      }
+      html .sakana-box-2{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        
+        transform-origin: 100% 100%; /* 从右下开始变换 */
+      }
+    </style>
+
+    <div class="sakana-box"></div>
+    <div class="sakana-box-2"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sakana@1.0.8"></script>
+    <script>
+      // 取消静音
+      Sakana.setMute(false);
+
+      // 启动
+      const sakana = Sakana.init({
+        // 选项: 默认值
+        el:         '.sakana-box',     // 启动元素 node 或 选择器
+        character:  'takina',          // 启动角色 'chisato','takina' 
+        inertia:    0.01,              // 惯性
+        decay:      1,              // 衰减
+        scale:      0.5,                 // 缩放倍数
+        translateY: 0,                 // 位移高度
+        canSwitchCharacter: false,     // 允许换角色
+        onSwitchCharacter(character){  // 切换角色回调
+          console.log(`${character} dayo~`);
+        },
+      });
+
+      // 启动
+      const chisato = Sakana.init({
+        // 选项: 默认值
+        el:         '.sakana-box-2',     // 启动元素 node 或 选择器
+        character:  'chisato',          // 启动角色 'chisato','takina' 
+        inertia:    0.2,              // 惯性
+        decay:      0.999,              // 衰减
+        scale:      0.5,                 // 缩放倍数
+        translateY: 0,                 // 位移高度
+        canSwitchCharacter: false,     // 允许换角色
+        onSwitchCharacter(character){  // 切换角色回调
+          console.log(`${character} dayo~`);
+        },
+      });
+    </script>
 </html>
